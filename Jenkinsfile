@@ -17,7 +17,10 @@ pipeline {
 
       stage("Create binaries") {
         agent {
-          docker { image "golang:1.8.0-alpine" }
+          docker {
+            image "golang:1.8.0-alpine"
+            args '-v $PWD:/go/src/github.com/jgensler8/math-service --workdir /go/src/github.com/jgensler8/math-service'
+          }
         }
         steps {
           sh "GOOS=linux GOARCH=amd64 go build"
