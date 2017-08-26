@@ -14,11 +14,13 @@ pipeline {
       // stage('Checkout from GitHub') {
       //   checkout scm
       // }
-      
+
       stage("Create binaries") {
         agent { "golang:1.8.0-alpine" }
-        step {
-          sh "cd ${goPath} && GOOS=linux GOARCH=amd64 go build"
+        steps {
+          step {
+            sh "cd ${goPath} && GOOS=linux GOARCH=amd64 go build"
+          }
         }
       }
 
