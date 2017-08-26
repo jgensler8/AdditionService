@@ -16,7 +16,9 @@ pipeline {
       // }
 
       stage("Create binaries") {
-        agent { "golang:1.8.0-alpine" }
+        agent {
+          docker { image "golang:1.8.0-alpine" }
+        }
         steps {
           sh "cd ${goPath} && GOOS=linux GOARCH=amd64 go build"
         }
