@@ -23,6 +23,9 @@ pipeline {
           }
         }
         steps {
+          sh "ls"
+          sh "pwd"
+          sh "env"
           sh "GOOS=linux GOARCH=amd64 go build"
         }
       }
