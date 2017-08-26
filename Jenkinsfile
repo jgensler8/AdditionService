@@ -1,7 +1,9 @@
 #!/usr/bin/env groovy
 
 // this will start an executor on a Jenkins agent with the docker label
-node('docker') {
+pipeline {
+  agent any
+  
   // Setup variables
   // application name will be used in a few places so create a variable and use string interpolation to use it where needed
   String applicationName = "AddtionService"
