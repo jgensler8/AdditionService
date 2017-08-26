@@ -5,8 +5,8 @@ pipeline {
   agent none
 
   parameters {
-      string(name: 'APPLICATIONNAME', defaultValue: 'AdditionService', description: 'docker image name')
-      string(name: 'GOPATH', defaultValue: '0.1.${env.BUILD_NUMBER}', description: 'docker image tag')
+      string(name: 'applicaitonName', defaultValue: 'AdditionService', description: 'docker image name')
+      string(name: 'goPath', defaultValue: '0.1.${env.BUILD_NUMBER}', description: 'docker image tag')
   }
 
   stages {
