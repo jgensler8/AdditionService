@@ -20,7 +20,7 @@ pipeline {
           docker { image "golang:1.8.0-alpine" }
         }
         steps {
-          sh "cd ${env.goPath} && GOOS=linux GOARCH=amd64 go build"
+          sh "GOOS=linux GOARCH=amd64 go build"
         }
       }
 
