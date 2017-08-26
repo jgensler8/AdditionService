@@ -9,25 +9,28 @@ pipeline {
       string(name: 'GOPATH', defaultValue: '0.1.${env.BUILD_NUMBER}', description: 'docker image tag')
   }
 
-  stage('Checkout from GitHub') {
-    checkout scm
-  }
+  stages {
 
-  stage("Create binaries") {
-    docker.image("golang:1.8.0-alpine").inside("-v ${pwd()}:${goPath}") {
-        sh "cd ${goPath} && GOOS=linux GOARCH=amd64 go build"
-    }
-  }
+      stage('Checkout from GitHub') {
+        checkout scm
+      }
 
-  stage("Build container") {
-    // From https://blog.nimbleci.com/2016/08/31/how-to-build-docker-images-automatically-with-jenkins-pipeline/
-    docker.withRegistry('localhost', 'registry-creds') {
-        stage "build"
-        def app = docker.build "${applicationName}:${buildNumber}"
+      stage("Create binaries") {
+        docker.image("golang:1.8.0-alpine").inside("-v ${pwd()}:${goPath}") {
+            sh "cd ${goPath} && GOOS=linux GOARCH=amd64 go build"
+        }
+      }
 
-        stage "publish"
-        // app.push 'latest'
-        app.push "${commit_id}"
-    }
+      stage("Build container") {
+        // From https://blog.nimbleci.com/2016/08/31/how-to-build-docker-images-automatically-with-jenkins-pipeline/
+        docker.withRegistry('localhost', 'registry-creds') {
+            stage "build"
+            def app = docker.build "${applicationName}:${buildNumber}"
+
+            stage "publish"
+            // app.push 'latest'
+            app.push "${commit_id}"
+        }
+      }
   }
 }
