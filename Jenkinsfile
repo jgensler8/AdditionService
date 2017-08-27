@@ -14,7 +14,7 @@ pipeline {
         agent {
           docker {
             image "golang:1.8.0-alpine"
-            args '-v $HOME:/go/src/github.com/jgensler8/math-service'
+            args '-v $PWD:/go/src/github.com/jgensler8/math-service'
           }
         }
         steps {
