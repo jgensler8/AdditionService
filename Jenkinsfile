@@ -25,9 +25,9 @@ pipeline {
           sh "ls"
           sh "pwd"
           sh "env"
-          sh "GOOS=linux GOARCH=amd64 go build ${applicationName}"
+          sh "GOOS=linux GOARCH=amd64 go build ${env.applicationName}"
           sh "ls"
-          sh "ls ${applicationName}"
+          sh "ls ${env.applicationName}"
         }
       }
 
