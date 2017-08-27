@@ -14,7 +14,7 @@ pipeline {
         agent {
           docker {
             image "golang:1.8.0-alpine"
-            args '-v $HOME:/go/src/github.com/jgensler8/math-service --workdir /go/src/github.com/jgensler8/math-service'
+            args '-v $HOME:/go/src/github.com/jgensler8/math-service'
           }
         }
         steps {
@@ -27,8 +27,7 @@ pipeline {
           sh "ls /go/src/github.com/jgensler8"
           sh "ls /go/src/github.com/jgensler8/math-service"
           sh "ls /go/src/github.com/jgensler8/math-service/addition-operator"
-          sh "GOOS=linux GOARCH=amd64 go build ./${env.applicationName}"
-          sh "ls ./${env.applicationName}"
+          sh "GOOS=linux GOARCH=amd64 go build github.com/jgensler8/math-service/addition-operator"
         }
       }
 
