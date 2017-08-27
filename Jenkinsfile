@@ -20,6 +20,7 @@ pipeline {
         steps {
           sh "pwd"
           sh "env"
+          sh "ls"
           sh "ls /go"
           sh "ls /go/src"
           sh "ls /go/src/github.com"
@@ -27,7 +28,6 @@ pipeline {
           sh "ls /go/src/github.com/jgensler8/math-service"
           sh "ls /go/src/github.com/jgensler8/math-service/addition-operator"
           sh "GOOS=linux GOARCH=amd64 go build ./${env.applicationName}"
-          sh "ls"
           sh "ls ./${env.applicationName}"
         }
       }
