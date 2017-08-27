@@ -10,18 +10,15 @@ pipeline {
 
   stages {
 
-      // stage('Checkout from GitHub') {
-      //   checkout scm
-      // }
-
       stage("Create binaries") {
         agent {
           docker {
             image "golang:1.8.0-alpine"
-            args '-v ${PWD}:/go/src/github.com/jgensler8/math-service --workdir /go/src/github.com/jgensler8/math-service'
+            args '-v ${env.WORKSPACE}:/go/src/github.com/jgensler8/math-service --workdir /go/src/github.com/jgensler8/math-service'
           }
         }
         steps {
+          checkout scm
           sh "pwd"
           sh "env"
           sh "ls /go"
