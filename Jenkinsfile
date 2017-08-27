@@ -26,6 +26,7 @@ pipeline {
           sh "ls /go/src"
           sh "ls /go/src/github.com"
           sh "ls /go/src/github.com/jgensler8"
+          sh "ls /go/src/github.com/jgensler8/addition-operator"
           sh "pwd"
           sh "env"
           sh "GOOS=linux GOARCH=amd64 go build ./${env.applicationName}"
