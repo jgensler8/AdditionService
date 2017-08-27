@@ -6,7 +6,6 @@ pipeline {
 
   parameters {
       string(name: 'applicaitonName', defaultValue: 'AdditionService', description: 'docker image name')
-      string(name: 'goPath', defaultValue: '0.1.${env.BUILD_NUMBER}', description: 'docker image tag')
   }
 
   stages {
@@ -26,7 +25,9 @@ pipeline {
           sh "ls"
           sh "pwd"
           sh "env"
-          sh "GOOS=linux GOARCH=amd64 go build"
+          sh "GOOS=linux GOARCH=amd64 go build ${applicationName}"
+          sh "ls"
+          sh "ls ${applicationName}"
         }
       }
 
