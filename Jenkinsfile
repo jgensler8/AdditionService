@@ -5,7 +5,7 @@ pipeline {
   agent none
 
   parameters {
-      string(name: 'applicaitonName', defaultValue: 'AdditionService', description: 'docker image name')
+      string(name: 'applicationName', defaultValue: 'AdditionService', description: 'docker image name')
   }
 
   stages {
