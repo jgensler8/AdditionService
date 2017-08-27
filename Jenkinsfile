@@ -11,6 +11,8 @@ pipeline {
   stages {
 
       stage("Create binaries") {
+        env.WORKSPACE = pwd()
+        
         agent {
           docker {
             image "golang:1.8.0-alpine"
